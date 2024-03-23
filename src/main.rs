@@ -126,5 +126,5 @@ fn main() {
     // mutable();
     // no_import();
     // import();
-    array_and_slices()
+    // array_and_slices();
 }
