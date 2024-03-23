@@ -30,12 +30,17 @@ fn looping() {
     }
 }
 
-fn ifing(){
+fn ifing() {
     for i in 0..5 {
         if i % 2 == 0 {
             println!("even {}", i);
         } else {
             println!("odd {}", i);
         }
+    }
+    // Just playing around with it
+    for i in 0..5 {
+        let even_odd = if i % 2 == 0 { "even" } else { "odd" };
+        println!("{} {}", even_odd, i);
     }
 }
