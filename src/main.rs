@@ -1,20 +1,5 @@
 #![allow(dead_code)]
 
-fn main() {
-    // println!("Hello, world!");
-    // introducing_variable();
-    // asserting_value();
-    // looping();
-    // ifing();
-    // sum()
-    // print!("Square of 9 is {}", sqr(9.0));
-    // print!("Square of 9 is {}", sqr_without_return(9.0));
-    // reference();
-    // mutable();
-    // no_import();
-    import();
-}
-
 fn introducing_variable() {
     // An interesting thing happens when you misspell "value",
     // the compiler will warn you about it:
@@ -114,4 +99,32 @@ fn import() {
     let abs_difference = (x.cos() - 1.0).abs();
     println!("{}", abs_difference < 1e-10);
     assert!(abs_difference < 1e-10);
+}
+
+fn array_and_slices() {
+    let arr = [10, 20, 30, 40];
+    let first = arr[0];
+    println!("first {}", first);
+
+    for i in 0..4 {
+        println!("[{}] = {}", i, arr[i]);
+    }
+
+    println!("lenght {}", arr.len())
+}
+
+fn main() {
+    // println!("Hello, world!");
+    // introducing_variable();
+    // asserting_value();
+    // looping();
+    // ifing();
+    // sum()
+    // print!("Square of 9 is {}", sqr(9.0));
+    // print!("Square of 9 is {}", sqr_without_return(9.0));
+    // reference();
+    // mutable();
+    // no_import();
+    // import();
+    array_and_slices()
 }
