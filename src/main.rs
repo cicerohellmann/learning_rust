@@ -10,7 +10,8 @@ fn main() {
     // print!("Square of 9 is {}", sqr(9.0));
     // print!("Square of 9 is {}", sqr_without_return(9.0));
     // reference();
-    mutable();
+    // mutable();
+    no_import();
 }
 
 fn introducing_variable() {
@@ -94,7 +95,13 @@ fn mutable() {
     println!("res is {}", res)
 }
 
-fn modifies(x: &mut f64){
+fn modifies(x: &mut f64) {
     *x = 1.0;
 }
 
+fn no_import() {
+    let x = 2.0 * std::f64::consts::PI;
+    let abs_difference = (x.cos() - 1.0).abs();
+    println!("{}", abs_difference < 1e-10);
+    assert!(abs_difference < 1e-10);
+}
