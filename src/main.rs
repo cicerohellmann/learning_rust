@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 fn main() {
     // println!("Hello, world!");
     // introducing_variable();
@@ -49,9 +51,9 @@ fn ifing() {
 fn sum() {
     //Here we are tackling mutability,
     // it's practical to simply add "mut"
-    let mut sum = 0;
+    let mut sum = 0.0;
     for i in 0..5 {
-        sum += i;
+        sum += i as f64;
     }
     println!("sum is {}", sum)
 }
