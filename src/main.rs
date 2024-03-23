@@ -11,7 +11,8 @@ fn main() {
     // print!("Square of 9 is {}", sqr_without_return(9.0));
     // reference();
     // mutable();
-    no_import();
+    // no_import();
+    import();
 }
 
 fn introducing_variable() {
@@ -101,6 +102,15 @@ fn modifies(x: &mut f64) {
 
 fn no_import() {
     let x = 2.0 * std::f64::consts::PI;
+    let abs_difference = (x.cos() - 1.0).abs();
+    println!("{}", abs_difference < 1e-10);
+    assert!(abs_difference < 1e-10);
+}
+
+use std::f64::consts::PI;
+
+fn import() {
+    let x = 2.0 * PI;
     let abs_difference = (x.cos() - 1.0).abs();
     println!("{}", abs_difference < 1e-10);
     assert!(abs_difference < 1e-10);
