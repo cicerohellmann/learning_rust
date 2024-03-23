@@ -113,6 +113,26 @@ fn array_and_slices() {
     println!("lenght {}", arr.len())
 }
 
+// The cool thing about slices is that it also does not create any copies of the data,
+// it's all references
+fn slicing() {
+    let ints = [1, 2, 3];
+    let floats = [1.1, 2.1, 3.1];
+    let strings = ["hello", "world"];
+    let ints_ints = [[1,2], [10, 20]];
+    println!("ints {:?}", ints);
+    println!("floats {:?}", floats);
+    println!("strings {:?}", strings);
+    println!("ints_ints {:?}", ints_ints);
+
+    let ints = [1, 2, 3,4 ,5];
+    let slice1 = &ints[0..2];
+    let slice2 = &ints[1..];
+    println!("ints {:?}", ints);
+    println!("slice1 {:?}", slice1);
+    println!("slice2 {:?}", slice2);
+}
+
 fn main() {
     // println!("Hello, world!");
     // introducing_variable();
@@ -127,4 +147,5 @@ fn main() {
     // no_import();
     // import();
     // array_and_slices();
+    slicing();
 }
