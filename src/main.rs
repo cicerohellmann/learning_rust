@@ -1,9 +1,10 @@
 fn main() {
-    println!("Hello, world!");
-    introducing_variable();
-    asserting_value();
-    looping();
-    ifing();
+    // println!("Hello, world!");
+    // introducing_variable();
+    // asserting_value();
+    // looping();
+    // ifing();
+    sum()
 }
 
 fn introducing_variable() {
@@ -43,4 +44,14 @@ fn ifing() {
         let even_odd = if i % 2 == 0 { "even" } else { "odd" };
         println!("{} {}", even_odd, i);
     }
+}
+
+fn sum() {
+    //Here we are tackling mutability,
+    // it's practical to simply add "mut"
+    let mut sum = 0;
+    for i in 0..5 {
+        sum += i;
+    }
+    println!("sum is {}", sum)
 }
