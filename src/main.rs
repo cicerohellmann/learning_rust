@@ -6,7 +6,11 @@ fn main() {
     // asserting_value();
     // looping();
     // ifing();
-    sum()
+    // sum()
+    // print!("Square of 9 is {}", sqr(9.0));
+    // print!("Square of 9 is {}", sqr_without_return(9.0));
+    // reference();
+    mutable();
 }
 
 fn introducing_variable() {
@@ -57,3 +61,40 @@ fn sum() {
     }
     println!("sum is {}", sum)
 }
+
+fn sqr(x: f64) -> f64 {
+    return x * x;
+}
+
+fn sqr_without_return(x: f64) -> f64 {
+    // If You accidentally leave the semicolon here, you will get:
+    //    |    implicitly returns `()` as its body has no tail or `return` expression
+    // 66 |     x * x;
+    //    |          - help: remove this semicolon to return this value
+    x * x
+}
+
+// The idea of reference to avoid creating copies of data
+// is a cool concept to help understand reference and dereference
+
+fn reference() {
+    let i = 10;
+    let res1 = by_ref(&i);
+    let res2 = by_ref(&41);
+    println!("{} {}", res1, res2);
+}
+
+fn by_ref(x: &i32) -> i32 {
+    *x + 1
+}
+
+fn mutable() {
+    let mut res = 0.0;
+    modifies(&mut res);
+    println!("res is {}", res)
+}
+
+fn modifies(x: &mut f64){
+    *x = 1.0;
+}
+
