@@ -119,18 +119,37 @@ fn slicing() {
     let ints = [1, 2, 3];
     let floats = [1.1, 2.1, 3.1];
     let strings = ["hello", "world"];
-    let ints_ints = [[1,2], [10, 20]];
+    let ints_ints = [[1, 2], [10, 20]];
     println!("ints {:?}", ints);
     println!("floats {:?}", floats);
     println!("strings {:?}", strings);
     println!("ints_ints {:?}", ints_ints);
 
-    let ints = [1, 2, 3,4 ,5];
+    let ints = [1, 2, 3, 4, 5];
     let slice1 = &ints[0..2];
     let slice2 = &ints[1..];
     println!("ints {:?}", ints);
     println!("slice1 {:?}", slice1);
     println!("slice2 {:?}", slice2);
+}
+
+fn optionals() {
+    let ints = [1, 2, 3, 4, 5];
+    let slice = &ints;
+    let first = slice.get(0);
+    let last = slice.get(5);
+    println!("first {:?}", first);
+    println!("last {:?}", last);
+    println!("first {} {}", first.is_some(), first.is_none());
+    println!("last {} {}", last.is_some(), last.is_none());
+    println!("first value {}", first.unwrap());
+    let maybe_last = slice.get(5);
+    let last = if maybe_last.is_some() {
+        *maybe_last.unwrap()
+    } else {
+        -1
+    };
+    println!("last {}", last)
 }
 
 fn main() {
@@ -147,5 +166,6 @@ fn main() {
     // no_import();
     // import();
     // array_and_slices();
-    slicing();
+    // slicing();
+    optionals();
 }
