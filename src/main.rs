@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 
+use std::f64::consts::PI;
+
 fn introducing_variable() {
     // An interesting thing happens when you misspell "value",
     // the compiler will warn you about it:
@@ -92,8 +94,6 @@ fn no_import() {
     assert!(abs_difference < 1e-10);
 }
 
-use std::f64::consts::PI;
-
 fn import() {
     let x = 2.0 * PI;
     let abs_difference = (x.cos() - 1.0).abs();
@@ -143,13 +143,80 @@ fn optionals() {
     println!("first {} {}", first.is_some(), first.is_none());
     println!("last {} {}", last.is_some(), last.is_none());
     println!("first value {}", first.unwrap());
-    let maybe_last = slice.get(5);
-    let last = if maybe_last.is_some() {
-        *maybe_last.unwrap()
-    } else {
-        -1
-    };
-    println!("last {}", last)
+    let maybe_last = slice.get(5).unwrap_or(&-1);
+    println!("last {}", maybe_last)
+}
+
+fn vectors() {
+    let mut v = Vec::new();
+    v.push(10);
+    v.push(20);
+    v.push(30);
+
+    dump(&v);
+
+    let slice = &v[1..];
+    println!("slice is {:?}", slice);
+
+    let first = v[0];
+    let maybe_first = v.get(0);
+
+    println!("v is {:?}", v);
+    println!("first is P{}", first);
+    println!("maybe_first is {:?}", maybe_first);
+}
+
+fn dump(arr: &[i32]) {
+    println!("arr is {:?}", arr);
+}
+
+fn iterators() {
+    let mut iter = 0..3;
+    assert_eq!(iter.next(), Some(0));
+    assert_eq!(iter.next(), Some(1));
+    assert_eq!(iter.next(), Some(2));
+    assert_eq!(iter.next(), None);
+    let arr = [10, 20, 30];
+    for i in arr {
+        println!("{}", i)
+    }
+
+    // So apparently the iterators have been implemented for [integer]
+    // because you don't need .iter anymore
+    for i in arr.iter() {
+        println!("with iterator{}", i)
+    }
+
+    // Slices are converted implicitly to iterators
+    let slice = &arr;
+    for i in slice {
+        println!("slice {}", i)
+    }
+
+    // is more efficient to iterate over an array or slice this way
+    // than to use for i in 0..slice.len() {}
+    // because Rust does not have to obsessively check every index operation.
+
+
+    let ints = [1, 2, 3, 4, 5];
+    let slice = &ints;
+
+    for s in slice.windows(2) {
+        println!("window {:?}", s)
+    }
+    for s in slice.chunks(2) {
+        println!("chunks {:?}", s)
+    }
+}
+
+fn pro_sum() {
+    // This is how our first sum would
+    // be done using idiomatic syntax
+    let sum: i32 = (0..5).sum();
+    println!("sum was {}", sum);
+
+    let sum: i32 = [10, 20, 30].iter().sum();
+    println!("sum was {}", sum);
 }
 
 fn main() {
@@ -167,5 +234,8 @@ fn main() {
     // import();
     // array_and_slices();
     // slicing();
-    optionals();
+    // optionals();
+    // vectors();
+    iterators();
+    // pro_sum();
 }
