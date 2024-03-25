@@ -219,6 +219,98 @@ fn pro_sum() {
     println!("sum was {}", sum);
 }
 
+fn more_vectors() {
+    let mut v1 = vec![10, 20, 30, 40];
+    v1.pop();
+
+    let mut v2 = Vec::new();
+    v2.push(10);
+    v2.push(20);
+    v2.push(30);
+
+    assert_eq!(v1, v2);
+    v2.extend(v1);
+    assert_eq!(v2, &[10, 20, 30, 10, 20, 30]);
+
+    let v1 = vec![1, 10, 5, 1, 2, 11, 2, 40];
+    let mut v1_sorted = v1.clone();
+    v1_sorted.sort();
+    v1_sorted.dedup();
+    assert_eq!(v1, &[1, 10, 5, 1, 2, 11, 2, 40]);
+    assert_eq!(v1_sorted, &[1, 2, 5, 10, 11, 40]);
+}
+
+fn drump_string(s: &str) {
+    println!("str '{}'", s);
+}
+
+fn array_to_str(arr: &[i32]) -> String {
+    let mut res = '['.to_string();
+    for v in arr {
+        res += &v.to_string();
+        res.push(',');
+    }
+    res.pop();
+    res.push(']');
+    res
+}
+
+fn strings() {
+    let text = "hello world";
+    let s = text.to_string();
+    drump_string(text);
+    drump_string(&s);
+
+    let mut s = String::new();
+    s.push('H');
+    s.push_str("ello");
+    s.push(' ');
+    s += "World!";
+    s.pop();
+    assert_eq!(s, "Hello World");
+
+    let arr = array_to_str(&[10, 20, 30]);
+    let res = format!("hello {}", arr);
+    assert_eq!(res, "hello [10,20,30]");
+
+    let text = "static";
+    let string = "dynamic".to_string();
+
+    let text_s = &text;
+    let string_s = &string;
+
+    println!("regular? {:?} {:?}", text, string);
+    println!("slices {:?} {:?}", text_s, string_s);
+
+    let multilingual = "Hi! ¡Hola! привет!";
+    for ch in multilingual.chars() {
+        print!("'{}'", ch)
+    }
+    println!();
+    println!("len {}", multilingual.len());
+    println!("count {}", multilingual.chars().count());
+
+    let maybe = multilingual.find('п');
+    if maybe.is_some() {
+        let hi = &multilingual[maybe.unwrap()..];
+        println!("Russian hi {}", hi);
+    }
+
+    // there are 25 bytes, but only 18 characters! However, if you use a method like find,
+    // you will get a valid index (if found) and then any slice will be fine
+
+
+    // String slicing may explode like vector indexing, because it uses byte offsets. In this case,
+    // the string consists of two bytes, so trying to pull out the first byte is a Unicode error.
+    // So be careful to only slice strings using valid offsets that come from string methods.
+    // let s = "¡";
+    // println!("{}", &s[0..1]);
+
+    let text = "the red fox and the lazy dog";
+    let words: Vec<&str> = text.split_whitespace().collect();
+    println!("words {:?}", &words);
+}
+
 fn main() {
     // println!("Hello, world!");
     // introducing_variable();
@@ -236,6 +328,8 @@ fn main() {
     // slicing();
     // optionals();
     // vectors();
-    iterators();
+    // iterators();
     // pro_sum();
+    // more_vectors();
+    strings();
 }
